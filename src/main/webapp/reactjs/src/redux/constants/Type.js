@@ -1,0 +1,15 @@
+export const FETCH_DATA_USER = "FETCH_DATA_USER";
+export const LOGIN_SUCCESS = "LOGIN_SUCCESS";
+export const LOGIN_FAILED = "LOGIN_FAILED";
+export const LOGIN = "LOGIN";
+export const LOGOUT = "LOGOUT";
+export const GET_USER = "GET_USER";
+export const SWITCH_PAGE_HOME = "SWITCH_PAGE_HOME";
+export const SWITCH_PAGE_USER = "SWITCH_PAGE_USER";
+export const SWITCH_PAGE_PRODUCT = "SWITCH_PAGE_PRODUCT";
+export const GET_LIST_USER = "GET_LIST_USER";
+export const GET_LIST_PRODUCT = "GET_LIST_PRODUCT";
+export const UPDATE_USER_SUCCESS = "UPDATE_USER_SUCCESS";
+export const UPDATE_USER_FAIL = "UPDATE_USER_FAIL";
+export const DELETE_USER_SUCCESS = "DELETE_USER_SUCCESS";
+export const CREATE_USER = "CREATE_USER";

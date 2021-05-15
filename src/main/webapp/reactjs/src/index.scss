@@ -1,0 +1,153 @@
+@import url("https://fonts.googleapis.com/css2?family=Montserrat&display=swap");
+
+
+
+#root {
+  font-size: 62.5%;
+  box-sizing: border-box;
+  font-family: Montserrat, Helvetica, Arial, sans-seri;
+
+  .nav--main{
+    width: 100%;
+    .mr-auto{
+      justify-content: space-between;
+      font-size: 1rem;
+      width: 25%;
+      margin-left: 800px;
+      border-right: 100px;
+    }
+  }
+
+  .link--navDropDown{
+    color: black;
+  }
+
+  .grid--container {
+    display: grid;
+    grid-template-areas:
+    "header"
+    "main"
+    "footer";
+    grid-template-rows: 5rem 1fr 5rem;
+    grid-template-columns: 1fr;
+    height: 100%;
+
+    header {
+      grid-area: header;
+      position: relative;
+      background-color: #203040;
+      color: #fff;
+      display: flex;
+      align-items: center;
+    }
+
+    main {
+      position: relative;
+      grid-area: main;
+      height: 100%;
+      img{
+        display: flex;
+        justify-content: center;
+        margin: 0 auto;
+      }
+        .div__content{
+          font-size: .9rem;
+          display: flex;
+          flex-direction: column;
+          justify-content: center;
+          align-items: center;
+          i{
+            cursor: pointer;
+            size: 10px;
+            padding: 0 10px 0 10px;
+          }
+          input{
+            width: 35px;
+            height: 30px;
+          }
+        }
+    }
+
+    footer {
+      grid-area: footer;
+      position: inherit;
+      background-color: #203040;
+      color: #fff;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+  }
+
+  .login__content{
+    background-color: yellowgreen;
+    position: relative;
+    top: 200px;
+    height: 220px;
+    width: 50%;
+    left: 25%;
+  }
+
+  .form__login{
+    display: flex;
+    justify-content: center;
+    align-content: center;
+    flex-direction: column;
+    padding: 10px 10px 0 10px;
+    font-size: 1rem;
+    box-sizing: border-box;
+    font-family: Montserrat, Helvetica, Arial, sans-seri;
+    #email{
+      width: 55%;
+      padding: 5px;
+      margin-left: 100px;
+      margin-bottom: 10px;
+    }
+    #password{
+      width: 55%;
+      padding: 5px;
+      margin-left: 100px;
+      margin-bottom: 10px;
+    }
+    .button__submit{
+      margin: 10px 0 10px 100px;
+      width: 50%;
+    }
+  }
+
+  body{
+    background-color: black;
+  }
+
+  .layout{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 1rem;
+    box-sizing: border-box;
+    font-family: Montserrat, Helvetica, Arial, sans-seri;
+  }
+
+  .admin--container{
+    font-size: 1rem;
+    box-sizing: border-box;
+    font-family: Montserrat, Helvetica, Arial, sans-seri;
+
+    .button--add-user{
+      margin-left: 85%;
+    }
+    .label--userAdmin{
+      color: #fff;
+    }
+    i{
+      cursor: pointer;
+      margin: 5px;
+      padding: 5px;
+    }
+  }
+
+}
+
+
+

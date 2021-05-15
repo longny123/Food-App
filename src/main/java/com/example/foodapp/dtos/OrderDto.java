@@ -9,14 +9,7 @@ public class OrderDto {
     private LocalDate startDate;
     private Boolean status;
     private Set<BurgerDto> burgers;
-    private String userEmail;
     public OrderDto() {
-    }
-    public String getUserEmail() {
-        return userEmail;
-    }
-    public void setUserEmail(String userEmail) {
-        this.userEmail = userEmail;
     }
     public OrderDto(Long id, LocalDate startDate, Boolean status, Set<BurgerDto> burgers) {
         this.id = id;

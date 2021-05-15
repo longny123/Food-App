@@ -18,9 +18,8 @@ public class RoleEntity implements Serializable {
     @NotEmpty
     private String name;
 
-//    @ManyToMany(mappedBy = "roles", fetch = FetchType.EAGER)
-    @OneToMany(mappedBy = "roleId", fetch = FetchType.EAGER)
-    private Set< UserRole > users = new HashSet<>();
+    @ManyToMany(mappedBy = "roles", fetch = FetchType.LAZY)
+    private Set< UserEntity > users = new HashSet<>();
 
     public RoleEntity(){
 
@@ -46,11 +45,11 @@ public class RoleEntity implements Serializable {
         this.name = name;
     }
 
-    public Set< UserRole > getUsers() {
+    public Set< UserEntity > getUsers() {
         return users;
     }
 
-    public void setUsers(Set < UserRole > users) {
+    public void setUsers(Set < UserEntity > users) {
         this.users = users;
     }
 }

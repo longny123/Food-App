@@ -1,5 +1,6 @@
 {
   "name": "reactjs",
+  "proxy": "http://localhost:8080/",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
@@ -18,7 +19,6 @@
     "react-admin": "^3.13.5",
     "react-bootstrap": "^1.5.2",
     "react-dom": "^17.0.2",
-    "react-notifications": "^1.7.2",
     "react-paginate": "^7.1.2",
     "react-redux": "^7.2.3",
     "react-router-dom": "^5.2.0",
@@ -57,6 +57,5 @@
   "devDependencies": {
     "cors": "^2.8.5",
     "react-redux": "^7.2.3"
-  },
-  "proxy": "http://localhost:8080/"
+  }
 }

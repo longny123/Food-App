@@ -1,8 +1,5 @@
 package com.example.foodapp.payload.response;
 
-import com.example.foodapp.models.entities.RoleEntity;
-import com.example.foodapp.models.entities.UserRole;
-
 import java.util.Set;
 
 public class UserResponse {
@@ -10,13 +7,13 @@ public class UserResponse {
     private String firstName;
     private String lastName;
     private String email;
-    private Set<UserRole> role;
+    private Set<String> role;
 
-    public Set<UserRole> getRole() {
+    public Set<String> getRole() {
         return role;
     }
 
-    public void setRole(Set<UserRole> role) {
+    public void setRole(Set<String> role) {
         this.role = role;
     }
 

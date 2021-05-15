@@ -21,7 +21,6 @@ function NavBar(props){
     }
 
     const { user } = props;
-    console.log(user)
         return(
             <div className="nav--main">
                 <Navbar bg="dark" variant="dark">
@@ -32,7 +31,7 @@ function NavBar(props){
                             <Link className="nav-link" to="/login">Log In</Link>
                         ):(
                             <NavDropdown title={user.firstName} id="basic-nav-dropdown">
-                            <NavDropdown.Item ><Link className="link--navDropDown" to="/order/list">Order List</Link></NavDropdown.Item>
+                            <NavDropdown.Item href="#action/3.1">Get OrderList</NavDropdown.Item>
                             <NavDropdown.Item ><Link className="link--navDropDown" to="/order">Order</Link></NavDropdown.Item>
                             <NavDropdown.Item href="#action/3.3">Something</NavDropdown.Item>
                             <NavDropdown.Divider />

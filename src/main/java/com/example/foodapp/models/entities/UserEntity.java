@@ -2,13 +2,12 @@ package com.example.foodapp.models.entities;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
-import javax.management.relation.Role;
 import javax.persistence.*;
 import javax.validation.constraints.Email;
 import java.io.Serializable;
 import java.util.*;
 
-@Entity(name = "users")
+@Entity
 public class UserEntity implements Serializable, UserDetails {
     private static final long serialVersionUID = -3657826334677172100L;
 
@@ -37,18 +36,16 @@ public class UserEntity implements Serializable, UserDetails {
     @Column(nullable = false)
     private Boolean emailVerificationStatus = false;
 
-
-    //    @ManyToMany(cascade=CascadeType.ALL, fetch = FetchType.EAGER)
-//    @JoinTable(
-//        name="user_role",
-//        joinColumns={@JoinColumn(name="user_id", referencedColumnName="id")},
-//        inverseJoinColumns={@JoinColumn(name="role_id", referencedColumnName="id")})
-//    @Column(columnDefinition = "varchar(10) default 'ROLE_USER'")
-    @OneToMany(mappedBy = "roleId",cascade=CascadeType.ALL,fetch = FetchType.EAGER, orphanRemoval = true)
-    private Set<UserRole> roles = new HashSet<>();
-
+    @ManyToMany(cascade=CascadeType.ALL, fetch = FetchType.LAZY)
+    @JoinTable(
+        name="user_role",
+        joinColumns={@JoinColumn(name="user_id", referencedColumnName="id")},
+        inverseJoinColumns={@JoinColumn(name="role_id", referencedColumnName="id")})
+    @Column(columnDefinition = "varchar(10) default 'ROLE_USER'")
+    private Set<RoleEntity> roles = new HashSet<>();
+    
     @OneToMany(mappedBy = "user",orphanRemoval = true, cascade = CascadeType.PERSIST)
-    private List<Order> orders ;
+    private Set<Order> orders ;
 
     public UserEntity(){}
 
@@ -124,19 +121,20 @@ public class UserEntity implements Serializable, UserDetails {
         this.emailVerificationStatus = emailVerificationStatus;
     }
 
-    public Set<UserRole> getRoles() {
+    public Set<RoleEntity> getRoles()
+    {
         return roles;
     }
-
-    public void setRoles(Set<UserRole> roles) {
+    public void setRoles(Set<RoleEntity> roles)
+    {
         this.roles = roles;
     }
 
-    public List<Order> getOrders() {
+    public Set<Order> getOrders() {
         return orders;
     }
 
-    public void setOrders(List<Order> orders) {
+    public void setOrders(Set<Order> orders) {
         this.orders = orders;
     }
 
@@ -175,8 +173,8 @@ public class UserEntity implements Serializable, UserDetails {
         return true;
     }
 
-//    public void removeUser(UserRole userRole){
-//        this.roles.remove(userRole);
-//        roleEntity.getUsers().remove(this);
-//    }
+    public void removeUser(RoleEntity roleEntity){
+        this.roles.remove(roleEntity);
+        roleEntity.getUsers().remove(this);
+    }
 }

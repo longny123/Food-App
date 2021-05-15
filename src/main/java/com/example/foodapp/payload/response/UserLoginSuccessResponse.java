@@ -3,21 +3,10 @@ package com.example.foodapp.payload.response;
 import com.example.foodapp.models.entities.RoleEntity;
 
 import java.util.List;
-import java.util.Set;
 
 public class UserLoginSuccessResponse {
     private String Jwt;
     private String UserId;
-
-    public Set<String> getRole() {
-        return role;
-    }
-
-    public void setRole(Set<String> role) {
-        this.role = role;
-    }
-
-    private Set<String> role;
 
     public UserLoginSuccessResponse(String jwt, String userId) {
         Jwt = jwt;
@@ -32,7 +21,6 @@ public class UserLoginSuccessResponse {
         return "{" +
                 "\"Jwt\":\"" + Jwt + '\"' +
                 ", \"UserId\":\"" + UserId + '\"' +
-                ", \"Role\":\"" + role + '\"' +
                 '}';
     }
 

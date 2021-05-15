@@ -1,6 +1,3 @@
-
-import burgerbuild from './assets/burgerbuild.gif'
-
 import ButtonSection from './components/ButtonSection'
 import OrderComp from './components/Order'
 import OrderList from './components/OrdersList'
@@ -9,22 +6,18 @@ import { BrowserRouter, Switch, Route, Redirect} from "react-router-dom";
 import HomePage from "./pages/HomePage";
 import LoginPage from "./pages/LoginPage";
 import AdminPage from "./pages/AdminPage";
-
+import Order from "./components/Order";
+import NavBar from "./components/NavBar";
 
 function App() {
   return (
       <BrowserRouter>
-
-
-              <Switch>
-
+          <Switch>
                   <Route component={HomePage} exact path="/" />
                   <Route component={LoginPage} path="/login" />
-                  <Route component={OrderList} path="/order/list" />
-
                   <Route component={OrderComp} path="/order" />
+                  <Route component={OrderList} path="/order/list" />
                   <Route component={AdminPage} path="/admin" />
-
               </Switch>
       </BrowserRouter>
   );

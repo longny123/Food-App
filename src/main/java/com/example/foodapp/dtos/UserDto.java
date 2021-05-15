@@ -1,7 +1,6 @@
 package com.example.foodapp.dtos;
 
 import com.example.foodapp.models.entities.RoleEntity;
-import com.example.foodapp.models.entities.UserRole;
 
 import java.io.Serializable;
 import java.util.List;
@@ -19,7 +18,7 @@ public class UserDto implements Serializable {
     private String encryptedPassword;
     private String emailVerificationToken;
     private Boolean emailVerificationStatus = false;
-    private Set<UserRole> roles;
+    private Set<String> roles;
 
     public UserDto(){}
     public UserDto(String userId, String firstName, String lastName, String email, String password) {
@@ -102,11 +101,11 @@ public class UserDto implements Serializable {
         this.emailVerificationStatus = emailVerificationStatus;
     }
 
-    public Set<UserRole> getRoles() {
+    public Set<String> getRoles() {
         return roles;
     }
 
-    public void setRoles(Set<UserRole> roles) {
+    public void setRoles(Set<String> roles) {
         this.roles = roles;
     }
 }

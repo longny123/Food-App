@@ -1,24 +1,27 @@
 package com.example.foodapp.controllers;
 
 import com.example.foodapp.config.constant.RequestStatus;
+import com.example.foodapp.config.constant.SecurityConstants;
 import com.example.foodapp.dtos.UserDto;
-import com.example.foodapp.models.entities.RoleEntity;
-import com.example.foodapp.models.entities.UserEntity;
-import com.example.foodapp.models.entities.UserRole;
 import com.example.foodapp.payload.request.UserDetailsRequestModel;
+import com.example.foodapp.payload.request.UserLoginRequestModel;
 import com.example.foodapp.payload.response.ApiResponse;
 import com.example.foodapp.payload.response.UserResponse;
 import com.example.foodapp.services.UserService;
+import io.jsonwebtoken.Jwts;
+import io.jsonwebtoken.SignatureAlgorithm;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
-import java.util.HashSet;
+import java.util.Date;
 import java.util.List;
-import java.util.Set;
 
 @CrossOrigin(origins = "http://localhost:3000/", maxAge = 3600)
 @RestController
@@ -37,10 +40,8 @@ public class UserController {
     public UserResponse getUser(@PathVariable String id){
         UserResponse returnValue = new UserResponse();
 
-        UserEntity userEntity = userService.getUserByUserId(id);
-        BeanUtils.copyProperties(userEntity,returnValue);
-        Set<UserRole> roles = new HashSet<>(userEntity.getRoles());
-        returnValue.setRole(roles);
+        UserDto userDto = userService.getUserByUserId(id);
+        BeanUtils.copyProperties(userDto,returnValue);
         return returnValue;
     }
 
@@ -51,7 +52,7 @@ public class UserController {
         UserDto userDto = new UserDto();
         BeanUtils.copyProperties(userdetail, userDto);
 
-        UserEntity createUser = userService.createUser(userDto);
+        UserDto createUser = userService.createUser(userDto);
         BeanUtils.copyProperties(createUser, returnValue);
         return returnValue ;
     }
@@ -63,10 +64,10 @@ public class UserController {
     public UserResponse updateUser(@PathVariable String id ,@RequestBody UserDetailsRequestModel userdetail){
         UserResponse returnValue = new UserResponse();
 
-        UserEntity userEntity = new UserEntity();
-        BeanUtils.copyProperties(userdetail, userEntity);
+        UserDto userDto = new UserDto();
+        BeanUtils.copyProperties(userdetail, userDto);
 
-        UserEntity updateUser = userService.updateUser(id, userEntity);
+        UserDto updateUser = userService.updateUser(id, userDto);
         BeanUtils.copyProperties(updateUser, returnValue);
         return returnValue ;
     }

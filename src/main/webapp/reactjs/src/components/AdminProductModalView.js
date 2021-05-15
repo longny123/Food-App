@@ -2,7 +2,6 @@ import {Dropdown, DropdownButton, Pagination, Table} from 'react-bootstrap'
 import {getListProduct} from "../redux/actions/UserAction";
 import {connect} from "react-redux";
 import {useEffect} from "react";
-import {deleteOrder} from "../service/orderApis"
 
 const AdminProductModalView = (props) => {
 
@@ -20,41 +19,42 @@ const AdminProductModalView = (props) => {
                     <thead>
                     <tr>
                         <th>#</th>
-                        <th>User</th>
                         <th>Start date</th>
                         <th>Status</th>
-                        <th>Burgers</th>
-                        <th>Delete</th>
+                        <th>Filling</th>
+                        <th>Quantity</th>
                     </tr>
                     </thead>
                     <tbody>
                     {props.list?.map((item, key) => (
                         <tr key={key}>
                             <td>{item.id}</td>
-                            <td>{item.userEmail}</td>
-                            <td>{Date(item.startDate).substring(0,15)}</td>
-                            <td>{item.status.toString()}</td>
+                            <td>{item.startDate}</td>
+                            <td>{item.status}</td>
                             <td>
                                 {item.burgers.map(burger =>{
-                                    return(<div>
+                                    return(
                                         <DropdownButton title="Burger">
                                             {burger.filling.map(fill =>{
                                                 return(
-                                                    <Dropdown.Item disabled>{fill.filling.name}: {fill.quantity}</Dropdown.Item>
+                                                    <Dropdown.Item>{fill.filling.name}</Dropdown.Item>
                                                 )
                                             })}
-                                        </DropdownButton> quantity: {burger.quantity}</div>)
+                                        </DropdownButton>)
                                 })}
                             </td>
-                            <td><button onClick={()=>{
-                                deleteOrder(item.id)
-                                .then(res=>alert(res))
-                                .then(()=>props.getListProduct())
-                                .catch(err=>{if(err.response){
-                                    alert(err.response.data.message)
-                                }
-                                })
-                            }}>Delete</button></td>
+
+                            <td> {item.burgers.map(burger =>{
+                                return(
+                                    <DropdownButton title="Quantity">
+                                        {burger.filling.map(fill =>{
+                                            return(
+                                                <Dropdown.Item>{fill.quantity}</Dropdown.Item>
+                                            )
+                                        })}
+                                    </DropdownButton>)
+                            })}
+                            </td>
                         </tr>
                     ))}
                     </tbody>

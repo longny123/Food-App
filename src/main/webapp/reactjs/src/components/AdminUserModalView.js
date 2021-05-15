@@ -61,10 +61,7 @@ const AdminUserModalView = (props) => {
                                                 'Deleted!',
                                                 'Your file has been deleted.',
                                                 'success'
-                                            ).then((result)=> {
-                                            if(result.isConfirmed) {
-                                                window.location.reload()
-                                            }})
+                                            )
                                         }
                                     })}/>
                                 </td>

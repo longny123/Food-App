@@ -1,8 +1,14 @@
 import axios from 'axios'
 
+const USER_API_URL = 'http://localhost:8080'
+const axiosClient = axios.create(
+    {baseURL : USER_API_URL}
+)
 
 export function getFillings(){
-    return axios.get("/order/filling")
+    return axios.get("/order/filling",{ headers: {
+        'Authorization': authHeader() 
+      }})
     .then(res => {
         return res.data
     })
@@ -43,6 +49,5 @@ export function deleteOrder(id){
 }
 
 function authHeader(){
-
     return JSON.parse( localStorage.getItem('User')).Jwt;
 }

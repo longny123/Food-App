@@ -1,9 +1,11 @@
 import axios from 'axios'
 
-const axiosClient = axios.create()
+const axiosClient = axios.create(
 
-// axiosClient.defaults.headers.common['Content-Type'] = "application/json"
-// axiosClient.defaults.headers.common['Accept'] = "application/json"
+)
+
+axiosClient.defaults.headers.common['Content-Type'] = "application/json"
+axiosClient.defaults.headers.common['Accept'] = "application/json"
 
 
 let config = "";
@@ -48,4 +50,5 @@ export const createUser = (fName, lName, email, password) => {
         "email": email,
         "password": password})
 }
+
 

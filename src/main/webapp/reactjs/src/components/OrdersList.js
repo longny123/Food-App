@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react'
 import {ListGroup} from 'react-bootstrap'
 import {getOrders,deleteOrder} from '../service/orderApis'
-import NavBar from '../components/NavBar'
+
 
 function OrdersList(){
     const [orders, setOrders] = useState([])
@@ -12,25 +12,17 @@ function OrdersList(){
             console.log(items)
         }).catch(err => console.log(err))
     },[])
-    
 
-    return <div>
-        <NavBar/>
-        
-        <ListGroup variant="primary">
-
+    return <ListGroup variant="primary">
         {orders.map(order=>{
             return <ListGroup.Item key={order.id}>
                 <div>Start date: {order.startDate}</div>
                 <div>Status: {order.status.toString()}</div>
                 <button onClick={()=>{
-                    deleteOrder(order.id)
-                    .then(res=>alert(res))
-                    .then(()=>getOrders())
-                    .then(items =>{
+                    deleteOrder(order.id).then(res=>alert(res)).catch(err=>alert(err))
+                    getOrders().then(items =>{
                         setOrders(items)
-                    }).catch(err=>alert(err))
-                    
+                    }).catch(err => alert(err))
                     }}>Delete this order</button>
                 <ListGroup >
                     {order.burgers.map(burger=>{
@@ -51,7 +43,6 @@ function OrdersList(){
             </ListGroup.Item>
         })}
     </ListGroup>
-    </div>
 }
 
 export default OrdersList

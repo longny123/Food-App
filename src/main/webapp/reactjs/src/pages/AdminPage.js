@@ -6,8 +6,6 @@ import AdminProductModalView from "../components/AdminProductModalView";
 import {getUser} from "../redux/actions/UserAction";
 import {connect} from "react-redux";
 import AdminHomeModalView from "../components/AdminHomeModalView";
-import {Redirect} from "react-router-dom";
-
 
 const AdminPage = (props) => {
     useEffect(() =>{
@@ -15,13 +13,7 @@ const AdminPage = (props) => {
             console.log(r)});
 
     },[])
-
     const { user } = props;
-
-    console.log(user)
-    if(user.Role !== "[ROLE_ADMIN]"){
-        return <Redirect to="/"></Redirect>
-    }
     return(
         <div className="admin--container">
             <header>

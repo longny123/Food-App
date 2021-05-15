@@ -2,14 +2,13 @@ import React, {Component, useEffect, useState} from 'react';
 import { getFillings } from '../service/orderApis';
 import {useDispatch} from 'react-redux'
 import {addBurger} from '../redux/orderSlice'
-import {NotificationContainer, NotificationManager} from 'react-notifications';
+
 
 const ButtonSection = () =>{
         const [filling,setFilling] = useState([])
         const [burger, setBurger] = useState([])
         var dispatch = useDispatch()
         useEffect(()=>{
-                console.log("here")
                 getFillings().then(items =>{
                         setFilling(items)
                         setBurger(items.map(item =>( {id: item.id,name: item.name, quantity: 0} )))
@@ -36,9 +35,7 @@ const ButtonSection = () =>{
                 if(check_empty) return 
                 dispatch(addBurger(burger))
         }
-        const createNoti = ()=>{
-                NotificationManager.success("Burger added to order","Success",1000)
-        }
+
         return (
             <div className="div__content">
 
@@ -48,9 +45,9 @@ const ButtonSection = () =>{
                             <div>Price: {item.price}</div>
                             </div>)}
 
-                    <button onClick={()=>{dispatchBurger();createNoti()}}>addBurger</button> 
+                    <button onClick={()=>dispatchBurger()}>addBurger</button> 
 
-                <NotificationContainer/>
+
             </div>
         );
 }
